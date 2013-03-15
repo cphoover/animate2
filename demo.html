@@ -2,17 +2,36 @@
 <html>
     <head>
         <title>animate2 Demo</title>
+        <style>
+          body{font-family:arial; }
+          #box1{overflow:hidden; opacity:0;}
+          p{ font-size:13px; font-family:georgia; font-style:italic}  
+
+        </style>
     </head>
     <body>
-          <div id="box1">Box 1</div>
-          <div id="box2">Box 2</div>
+          <h2>Animate2 Demo</h2>
+          <p>
+              Concept borrowed/stolen from: <a href="http://www.bradshawenterprises.com/blog/2011/a-jquery-function-to-animate-using-css3-transitions-if-possible-with-the-animate-fallback/">Rich Bradshaw</a> & <a href="https://gist.github.com/paulirish/523692">Paul Irish</a><br>Much Thanks to those guys!
+          </p>
+          <div id="box1">A jQuery function to animate using CSS3 transitions if possible, with the built-in animate fallback.</div>
           <script src="js/jquery-1.9.1.js"></script>
           <script src="js/animate2.js"></script>
           <script>
             var targetElem = $('#box1');
-            
-            targetElem.animate2({width:100, height:100, background:"red"}, function(){
-                targetElem.animate2({width:200, height:50, background:"yellow"});
+            targetElem.animate2({width:100, height:100, borderRadius:100, background:"red"}, function(){
+                targetElem.animate2({width:100, opacity:1,  height:200, padding: 10, fontFamily:"arial", borderRadius: 10,  background:"orange"}, function(){
+                    targetElem.animate2({width:200, height:50, color:"blue", opacity:.4,  background:"yellow"}, function(){
+                            targetElem.animate2({width:200, color:"#fff",  height:50, background:"green"}, function(){
+                                 targetElem.animate2({width:2000, height:500, transform: "rotate(360deg)",  opacity:.5, background:"blue"}, function(){
+                                    targetElem.animate2({width:200, height:300, background:"indigo"}, function(){
+                                        targetElem.animate2({width:250, height:50, opacity: 1, background:"purlpe"}, function(){
+                                        });
+                                    });
+                                 });
+                             });
+                    });
+                });
             });
           </script>
              

@@ -56,9 +56,11 @@
                 object.css(cssProperties);
 
                 if ($.isFunction(callback)) {
-                    object.bind(transitionEnd,function(){
+                    object.bind(transitionEnd,function(e){
+                         console.log(e);
                          object.unbind(transitionEnd);
-                         callback();
+                         setTimeout(callback, 0);
+                         callback = null;
                     });
                 }
                 
