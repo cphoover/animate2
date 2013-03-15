@@ -8,5 +8,13 @@
           <div id="box2">Box 2</div>
           <script src="js/jquery-1.9.1.js"></script>
           <script src="js/animate2.js"></script>
+          <script>
+            var targetElem = $('#box1');
+            
+            targetElem.animate2({width:100, height:100, background:"red"}, function(){
+                targetElem.animate2({width:200, height:50, background:"yellow"});
+            });
+          </script>
+             
     </body>
 </html>
