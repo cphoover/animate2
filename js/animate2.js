@@ -85,6 +85,7 @@
 
         $.fn.animate2 = function(_cssProperties, _callback, _ms){
             animate2($(this), _cssProperties, _callback, _ms);
+            return $(this);
         };
 
 })(jQuery);
