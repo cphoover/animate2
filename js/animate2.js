@@ -4,29 +4,39 @@
         var speed = 500; // Default animation speed in milliseconds (1000 = 1 second)
 
         function gimmePrefix(prop){
+          var result = {
+                           prefix: null,
+                           property: false
+                       };
+
           var prefixes = ['Moz','Khtml','Webkit','O','ms'],
               elem     = document.createElement('div'),
               upper    = prop.charAt(0).toUpperCase() + prop.slice(1);
          
           if (prop in elem.style) {
-            return prop;
+            result.property = prop;
+            return result;
           }
                 
           for (var len = prefixes.length; len--; ){
             if ((prefixes[len] + upper)  in elem.style) {
-              return (prefixes[len] + upper);
+
+                 result.prefix   = prefixes[len];
+                 result.property = (prefixes[len] + upper);
+
+              return result;
             }
           }
           
          
-          return false;
+          return result;
         }                 
 
-        var prefixedProperty = gimmePrefix('transition');
-        var vendorRegex = /^(Moz|Webkit|Khtml|O|ms|Icab)(?=[A-Z])/;
-        
-        var vendorMatches = prefixedProperty ? prefixedProperty.match(vendorRegex) : null;
-        var vendor = ( vendorMatches != null  ? prefixedProperty.match(vendorRegex)[0] : "");
+        var prefixed = gimmePrefix('transition');
+
+        var prefixedProperty = prefixed.property
+        var vendor = prefixed.prefix;
+
 
         var transitionEnd;
 
